@@ -61,9 +61,10 @@ abstract class MouseHandlerMixin {
         }
 
         double sensitivity = mc.options.sensitivity().get();
+        double sensitivityScale = Math.pow(sensitivity * 0.6 + 0.2, 3) * 8.0 * 0.15;
 
-        double dYaw = dx * sensitivity * 0.01;
-        double dPitch = dy * sensitivity * 0.01;
+        double dYaw = Math.toRadians(dx * sensitivityScale);
+        double dPitch = Math.toRadians(dy * sensitivityScale);
 
         if (fme.is6DOFEnabled()) {
             // set 6DOF orientation to follow the mouse
